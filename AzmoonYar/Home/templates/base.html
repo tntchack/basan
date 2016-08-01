@@ -1,0 +1,55 @@
+{% load staticfiles %}
+{% load thumbnail %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Home.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<div id="header">
+    <span class="logo">آزمون یار</span>
+    {% if request.user.is_authenticated %}
+    <ul class="menu">
+        <li {% if section == "dashboard" %}class="selected"{% endif %}>
+            <a href="{% url 'dashboard' %}"> طاقچه </a>
+        </li>
+        <li {% if section == "images" %}class="selected"{% endif %}>
+            <a href="#"> سوالات </a>
+        </li>
+        <li {% if section == "people" %}class="selected"{% endif %}>
+            <a href="#">آزمون ساز</a>
+        </li>
+    </ul>
+    {% endif %}
+    <span class="user">
+        {% if request.user.is_authenticated %}
+        سلام  <a href="{% url 'edit'%}">{{ request.user.first_name }} </a>,
+            <a href="{% url 'logout' %}">خروج</a>
+        {% thumbnail user.profile.photo "50x50" crop="100%" as im %}
+            <a href="{% url 'edit'%}">
+                <img class='profile-image' src="{{ im.url }}" class="image-detail">
+            </a>
+        {% endthumbnail %}
+        {% endif %}
+    </span>
+</div>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+                    <a href="#" class="close" >✖</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}ورود{% endblock %}
+{% block content %}
+<div class="login">
+
+    <div class="login-form">
+        <form action="{% url 'login' %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <p><input type="submit" value="ورود"></p>
+        </form>
+        <span class="login-form-text">
+            <P><a href="{% url 'password_reset' %}">گذر واژه را فراموش کردم:(</a></P>
+                {% if form.errors %}
+            <p>
+               نام کاربری و گذر واژه تطابق ندارند
+    لطفا دوباره سعی کنید        </p>
+        {% else %}
+            <p>عضو نیستید؟ خب <a href="{% url 'register' %}">عضو شوید</a></p>
+        {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}
