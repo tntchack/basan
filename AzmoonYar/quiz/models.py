@@ -42,3 +42,7 @@ class Answer(models.Model):
     answer_date = models.DateTimeField('last edit')
     answer_uploader = None
     answer_rate = models.IntegerField(validators=[Question.valid_rate], default=0)
+	
+	def __str__(self):
+		return self.answer_text
+	
