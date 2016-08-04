@@ -8,8 +8,17 @@ from django.conf import settings
 class Question (models.Model):
     question_text = models.TextField()
     url_slug = models.SlugField()
-    # slug creator function
+
+    # slug creator helper!!
+    def slug_helper(string):
+        list = []
+        counter = 0
+        for i in len(string):
+            if string[i] == " ":
+                list.append(string[counter:i])
+                counter = i + 1
     def slug_creator(strings):
+        nemidonam = None
 
     question_date = models.DateTimeField('date submitted')
 
