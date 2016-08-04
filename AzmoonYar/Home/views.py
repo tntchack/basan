@@ -1,13 +1,22 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditeForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from quiz.models import Question
 from django.contrib import messages
 
 
 @login_required
 def dashboard(request):
     return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+
+
+@login_required
+def questions_list(request):
+    object_list = Question.objects.all()
+    return render(request, 'questions/list.html', {'section': 'questions',
+                                                   'question_list': object_list})
 
 
 @login_required
