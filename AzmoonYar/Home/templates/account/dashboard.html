@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load Home_tags %}
 {% block title %}طاقچه{% endblock %}
 
 {% block content %}
@@ -8,4 +8,8 @@
             <span>شما در حال حاضر  <strong> {{request.user.profile.ratio}} </strong> سکوکات دارید</span>
     </div>
     <p>شما میتونید <a href="{% url 'edit' %}"> حسابتون رو ویرایش کنید </a> یا <a href="{% url 'password_change' %}">  رمز عبور رو تغییر</a> بدید.<p>
+    <div class="message">
+    <p class="title">    پیام های شما   </p>
+        {% show_latest_messages %}
+    </div>
 {% endblock %}
