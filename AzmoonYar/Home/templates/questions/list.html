@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}سوالات{% endblock %}
+
+{% block content %}
+    {% for question in question_list %}
+        <p>{{ question.question_text }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}

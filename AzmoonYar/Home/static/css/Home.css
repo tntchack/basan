@@ -3,6 +3,24 @@
     src: url(../irsans.ttf);
 }
 
+p.title {
+    padding-right: 10px;
+    font-weight: bolder;
+}
+
+.message > ul {
+    list-style: none;
+    padding: 10px;
+}
+
+.message {
+    width: 500px;
+    float: left;
+    background-color: #cbead3;
+    border-radius: 3px;
+    border-bottom: #73b785 solid;
+}
+
 div#dashboard-header {
     border-bottom: 1px solid #bbb;
     overflow: auto;

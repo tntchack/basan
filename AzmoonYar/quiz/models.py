@@ -9,6 +9,7 @@ class Question (models.Model):
     question_text = models.TextField()
     url_slug = models.SlugField()
 
+
     # slug creator helper!!
     def slug_helper(string):
         list = []
@@ -16,9 +17,11 @@ class Question (models.Model):
         for i in len(string):
             if string[i] == " ":
                 list.append(string[counter:i])
-                counter = i + 1
+                counter = i +
+    # slug creator function
     def slug_creator(strings):
         nemidonam = None
+
 
     question_date = models.DateTimeField('date submitted')
 

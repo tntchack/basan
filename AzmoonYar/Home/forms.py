@@ -5,10 +5,10 @@ from .models import Profile
 
 
 class LoginFormi(AuthenticationForm):
-    username = forms.CharField(label="نام کاربری", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+    username = forms.CharField(label="نام کاربری", max_length=254,
+                               )
     password = forms.CharField(label="گذرواژه", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password'}))
+                               strip=False, widget=forms.PasswordInput)
     error_messages = {
         'invalid_login': ("سلام جیگر "),
         'inactive': ("برو بینیم بابا"),
