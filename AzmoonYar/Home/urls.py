@@ -2,6 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.contrib.auth import views as auth_views
 from .forms import LoginFormi
+from ..quiz import views as quiz_views
 
 urlpatterns = [
     # url(r'^login/$', views.user_login, name='login'),
@@ -19,6 +20,7 @@ urlpatterns = [
         auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^register/$', views.register, name='register'),
     url(r'^edit/$', views.edit, name='edit'),
-    url(r'^questions/$', views.questions_list, name='questions')
+    url(r'^questions/$', views.questions_list, name='questions'),
+    url(r'*upload/$', quiz_views.test, name='upload')
 
 ]
