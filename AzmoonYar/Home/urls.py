@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.contrib.auth import views as auth_views
 from .forms import LoginFormi
-from ..quiz import views as quiz_views
+from quiz import views as quiz_view
 
 urlpatterns = [
     # url(r'^login/$', views.user_login, name='login'),
@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^edit/$', views.edit, name='edit'),
     url(r'^questions/$', views.questions_list, name='questions'),
-    url(r'*upload/$', quiz_views.test, name='upload')
+    url(r'^upload/', quiz_view.uploader, name='upload'),
+    url(r'^exam/$', quiz_view.exam, name= 'exam'),
+    url(r'^exam-creator/', quiz_view.exam_creator, name= 'exam_creator')
 
 ]

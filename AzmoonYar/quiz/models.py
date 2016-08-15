@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils import encoding
 # from django.conf import settings
 # from random import randint
 
@@ -10,25 +11,9 @@ class Question (models.Model):
     text = models.TextField()
     url_slug = models.SlugField(allow_unicode=True, null=True)
 
-    def save(self, *args, **kwargs):
-        self.url_slug = self.lesson + "-" + self.question_types[type] + str(hash(self.question_text))  # TODO: incorrect
-        super(Question, self).save(*args, **kwargs)
-
-
-
-
-    # slug creator helper!!
-    #def slug_helper(string):
-     #   list = []
-      #  counter = 0
-       # for i in len(string):
-        #    if string[i] == " ":
-         #       list.append(string[counter:i])
-          #      counter = i + 1
-
-    # slug creator function
-    # def slug_creator(strings):
-    #    nemidonam = None
+    # def save(self, *args, **kwargs):
+    #    self.url_slug = encoding.force_str(self.lesson) + "-" + encoding.force_str(self.type) + encoding.force_str(hash(self.text))  # TODO: correct type
+    #    super(Question, self).save(*args, **kwargs)
 
     publish_date = models.DateTimeField('date submitted', null=True)
     draft_date = models.DateTimeField('date drafted', null=True)
@@ -40,7 +25,7 @@ class Question (models.Model):
         (draft, "چرک نویس"),
     )
 
-    pubdr = models.CharField(choices=pubdr_choices, default=publish)
+    pubdr = models.CharField(max_length=20, choices=pubdr_choices, default=publish)
     # end of publish or draft
 
     # the definition of types of the question
@@ -78,15 +63,15 @@ class Question (models.Model):
         # TODO: completing the function
     # end of function
 
-    lesson = models.CharField(max_length=50, validators=[valid_lessons], default="ریاضی")
+    lesson = models.CharField(max_length=50, validators=[valid_lessons])
 
-    user = models.CharField(max_length=50)  # TODO: should get from request.uer
+    user = models.CharField(max_length=50)
 
     def __str__(self):
         return self.lesson + ":" + self.question_text[:10]
 
     class Meta:
-        ordering = ("-question_date",)
+        ordering = ("-publish_date",)
 
 
 class Answer(models.Model):
