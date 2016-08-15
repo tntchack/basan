@@ -3,11 +3,9 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 
 
-# models here:
-
 class Question (models.Model):
     question_text = models.TextField()
-    url_slug = models.SlugField()
+    url_slug = models.SlugField(null=True)
     # slug creator function
 
     def slug_creator(strings):

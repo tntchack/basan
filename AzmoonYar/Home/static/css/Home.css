@@ -3,6 +3,31 @@
     src: url(../irsans.ttf);
 }
 
+.pagination {
+    float: left;
+}
+.question {
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #b4fff5;
+    padding: 10px;
+}
+
+.quran > ul {
+    list-style: none;
+    padding: 10px;
+}
+
+.quran {
+    width: 500px;
+    float: left;
+    background-color: #eadaaa;
+    border-radius: 3px;
+    border-bottom: #c1ad70 solid;
+}
+
+
 p.title {
     padding-right: 10px;
     font-weight: bolder;
@@ -19,6 +44,7 @@ p.title {
     background-color: #cbead3;
     border-radius: 3px;
     border-bottom: #73b785 solid;
+    margin-bottom: 20px;
 }
 
 div#dashboard-header {

@@ -15,8 +15,20 @@ def dashboard(request):
 @login_required
 def questions_list(request):
     object_list = Question.objects.all()
+
+    paginator = Paginator(object_list, 5) # 3 posts in each page
+    page = request.GET.get('page')
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        questions = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        questions = paginator.page(paginator.num_pages)
     return render(request, 'questions/list.html', {'section': 'questions',
-                                                   'question_list': object_list})
+                                                   'questions': questions,
+                                                   'page': page})
 
 
 @login_required

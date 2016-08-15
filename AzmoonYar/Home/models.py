@@ -45,3 +45,21 @@ class Message(models.Model):
 
     objects = models.Manager()
     published = PublishedManager()
+
+
+class Quran(models.Model):
+    aye = models.TextField()
+    tarjome = models.TextField()
+    created = models.DateTimeField(auto_now_add=True, db_index=True)
+    publish = models.DateTimeField(default=timezone.now)
+    STATUS_CHOICES = (
+        ('Published', 'منتشر شده'),
+        ('Draft', 'چک نویس')
+    )
+    status = models.CharField(choices=STATUS_CHOICES, default='Draft', max_length=30)
+
+    def __str__(self):
+        return self.ayah
+
+    objects = models.Manager()
+    published = PublishedManager()
